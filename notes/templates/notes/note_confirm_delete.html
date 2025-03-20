@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Note</title>
+</head>
+<body>
+    <h1>Are you sure you want to delete this note?</h1>
+    <p><strong>{{ note.title }}</strong> - {{ note.content }}</p>
+    
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Yes, Delete</button>
+    </form>
+    <a href="{% url 'note_list' %}">Cancel</a>
+</body>
+</html>

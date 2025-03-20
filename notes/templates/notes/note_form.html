@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Note Form</title>
+</head>
+<body>
+    <h1>{% if form.instance.id %}Edit Note{% else %}Add New Note{% endif %}</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Note</button>
+    </form>
+    <a href="{% url 'note_list' %}">Back to Notes</a>
+</body>
+</html>

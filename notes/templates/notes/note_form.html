@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Note Form</title>
-</head>
-<body>
-    <h1>{% if form.instance.id %}Edit Note{% else %}Add New Note{% endif %}</h1>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save Note</button>
-    </form>
-    <a href="{% url 'note_list' %}">Back to Notes</a>
-</body>
-</html>
+{% extends 'notes/base.html' %}
+
+{% block title %}{{ form.instance.id|yesno:"Edit Note,Add New Note" }}{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">{{ form.instance.id|yesno:"Edit Note,Add New Note" }}</h1>
+
+<form method="POST" class="card p-4 shadow">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">💾 Save Note</button>
+    <a href="{% url 'note_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

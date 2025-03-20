@@ -11,13 +11,14 @@
         </p>
     {% endfor %}
 {% endif %}
-    <h1>Welcome to the Notes App!</h1>
-    {% if user.is_authenticated %}
-        <p>Hello, {{ user.username }}!</p>
-        <a href="{% url 'logout' %}">Logout</a>
-    {% else %}
-        <a href="{% url 'signup' %}">Signup</a> | 
-        <a href="{% url 'login' %}">Login</a>
-    {% endif %}
+<h1>Welcome to the Notes App!</h1>
+{% if user.is_authenticated %}
+    <p>Hello, {{ user.username }}!</p>
+    <a href="{% url 'note_list' %}">📋 My Notes</a> |
+    <a href="{% url 'logout' %}">Logout</a>
+{% else %}
+    <a href="{% url 'signup' %}">Signup</a> | 
+    <a href="{% url 'login' %}">Login</a>
+{% endif %}
 </body>
 </html>

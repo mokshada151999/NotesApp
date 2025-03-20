@@ -1,24 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Notes App</title>
-</head>
-<body>
-    {% if messages %}
-    {% for message in messages %}
-        <p style="color: {% if message.tags == 'error' %}red{% else %}green{% endif %};">
-            {{ message }}
-        </p>
-    {% endfor %}
-{% endif %}
-<h1>Welcome to the Notes App!</h1>
-{% if user.is_authenticated %}
-    <p>Hello, {{ user.username }}!</p>
-    <a href="{% url 'note_list' %}">📋 My Notes</a> |
-    <a href="{% url 'logout' %}">Logout</a>
-{% else %}
-    <a href="{% url 'signup' %}">Signup</a> | 
-    <a href="{% url 'login' %}">Login</a>
-{% endif %}
-</body>
-</html>
+{% extends 'notes/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="display-4">Welcome to the Notes App! 📝</h1>
+
+    {% if user.is_authenticated %}
+        <p class="lead">Hello, {{ user.username }}!</p>
+        <a href="{% url 'note_list' %}" class="btn btn-primary">📋 My Notes</a>
+        <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+    {% else %}
+        <a href="{% url 'signup' %}" class="btn btn-success">Signup</a>
+        <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+    {% endif %}
+</div>
+{% endblock %}

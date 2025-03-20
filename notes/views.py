@@ -56,6 +56,8 @@ def create_note(request):
             note.save()
             messages.success(request, 'Note created successfully!')
             return redirect('home')
+        else:
+            messages.error(request, "Failed to create note. Please correct the errors below.")
     else:
         form = NoteForm()
     return render(request, 'notes/note_form.html', {'form': form})

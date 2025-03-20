@@ -4,6 +4,20 @@
     <title>Notes App</title>
 </head>
 <body>
+    {% if messages %}
+    {% for message in messages %}
+        <p style="color: {% if message.tags == 'error' %}red{% else %}green{% endif %};">
+            {{ message }}
+        </p>
+    {% endfor %}
+{% endif %}
     <h1>Welcome to the Notes App!</h1>
+    {% if user.is_authenticated %}
+        <p>Hello, {{ user.username }}!</p>
+        <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+        <a href="{% url 'signup' %}">Signup</a> | 
+        <a href="{% url 'login' %}">Login</a>
+    {% endif %}
 </body>
 </html>
